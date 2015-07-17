@@ -1,0 +1,34 @@
+1.15
+Fixed a win98 not connected bug
+Added speed coloumn
+Added directory name searching
+Added l33cher alarm (and now changed it slightly)
+Not allowed zero folders shared now
+Fixed a msgbox problem
+Fixed a 0 transfer problem
+Added lots of Tooltips
+Blocked sharing of banned files now includes (.LUSerNet .eml .nws .vbs .js) have any more? msg me
+Oh the eggs, can't stop the eggs
+
+1.14
+Fixed French windows sharing bug.
+Add and implemented skin code to LUSerNet with resizing ablitys. At the moment you can't change the skin, but it does mean that the LUSerNet exe is 400k smaller
+Decreased the memory footprint of LUSerNet by 4mb by reading some M$ tech papers :)
+Removed the chat feature due to abuse, and replaced with a help button
+Added icon for wma, and added share.dat to the blocked list
+Fixed a refreshing shares when the folder doesn't exist anymore bug
+Made the auto-updater more bug free, and the ability to continue loading LUSerNet on error.
+Checks if the database & auto-updater are present
+Made it detect with network interface to use (if you have more than 1)
+Fixed the error 58 File allready exist bug (it renmaes the file to .lusernet and deletes .lusernet if it allready exists)
+No more than X files will upload at a time now
+Redid the message box window
+Made a R U Sure you want to exit button
+Changed the about page
+Made the help page
+Fixed a bug when refreshing the shares on close
+Sharing is now forced
+Made LUSerNet auto-update the auto-updater
+
+1.13
+Too lazy to do a change log before now

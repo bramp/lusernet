@@ -1,0 +1,13 @@
+Microsoft Visual Studio Solution File, Format Version 1.00
+Project("{73393D18-DAC4-11D1-88FC-0000F8064EBB}") = "LUSerNet", "C:\DOCUME~1\Andrew\My Documents\Visual Studio Projects\VBInstaller1\VBInstaller1.wip", "{1A0728B1-8B44-4696-A509-F5D00AA56F7E}"
+EndProject
+Global
+	GlobalSection(LocalDeployment) = postSolution
+		StartupProject = {00000000-0000-0000-0000-000000000000}
+	EndGlobalSection
+	GlobalSection(BuildOrder) = postSolution
+		0 = {1A0728B1-8B44-4696-A509-F5D00AA56F7E}
+	EndGlobalSection
+	GlobalSection(DeploymentRoot) = postSolution
+	EndGlobalSection
+EndGlobal

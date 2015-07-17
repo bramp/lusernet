@@ -1,0 +1,16 @@
+///////////////////////////////////////////////////////////////////////
+//////
+   // Myres.rc - 16 & 32 bit script. This must be compiled into two .res
+   // files using the 16 & 32 bit versions of RC.
+
+///////////////////////////////////////////////////////////////////////
+//////
+   // Wave Resources - You must copy these files from your \Windows
+   // directory to the directory where your .rc script resides.
+
+   HITLER                  WAVE    DISCARDABLE     "graphics\Heil.wav"
+   BEER                    WAVE    DISCARDABLE     "graphics\beer.wav"
+   101                     ICON    DISCARDABLE     "graphics\msgbox1.bmp"
+   102                     ICON    DISCARDABLE     "graphics\msgbox2.bmp"
+   103                     ICON    DISCARDABLE     "graphics\msgbox3.bmp"
+   104                     ICON    DISCARDABLE     "graphics\msgbox4.bmp"

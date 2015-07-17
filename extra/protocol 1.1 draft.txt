@@ -1,0 +1,106 @@
+DISCLAIMER
+
+This protocol specification comes from reverse engineering on a private
+network using two Windows boxes, each running LUSerNet 1.1.15, a FreeBSD
+box and a hub (downgraded from a switch for the attempt).
+
+The FreeBSD box was used to snoop the network traffic and run a traffic 
+decoding program such that the LUSerNet protocol could be seen in plain 
+text.
+
+As such the protocol specification may be incomplete or inaccurate.  You 
+use this information entirely at your own risk.
+
+DISTRIBUTION
+
+This document may be distributed with or without modifications and
+additions, provided that any such modifications and/or additions are
+clearly marked with the name and contact email address of the author of
+those modifications/additions.
+
+AUTHOR
+
+Copyright 2002,2003 Catherine Allen (c.allen@lancaster.ac.uk,mango@turf.org)
+
+PROTOCOL SPECIFICATION
+
+Data is transmitted in UDP packets.  For some messages these packets are
+broadcast to 255.255.255.255, for others they are unicast to a specific host.
+The destination port is always 9876, except for file transfers, which do
+not use UDP.  Clients listen on UDP 9876 for messages from others.
+
+In order to get an ASCII representation of the data sent in each packet 
+bitwise XOR each byte with 10000000. (128d)  This protocol is 100% ASCII
+with trivial encoding before being transmitted.
+
+I.E. You may receive:
+
+  C8 C9 FC B1
+
+OR each of these with 128d, and print as a character (%c), or look in an
+ASCII lookup table (man ascii on UNIX).  Doing this with the test data
+gives us:
+
+  H  I  |  1
+
+The | character separates the arguments within a packet.  The first 
+segment is always the command name.
+
+COMMANDS
+
+  HELLO|
+
+    This message is broadcast once by each client on startup.
+
+
+  HI|<version>|<#files shared>|<#folders shared>|<#bytes shared>|
+
+    This message is sent by each client seeing the broadcast HELLO to
+    the sender of that message.  This message is unicast.
+
+
+  STAT|<#>|<#>|<#>|
+
+    This message is broadcast after client startup.
+    It contains general statistical information about clients with no 
+    relevance to the program's implementation.
+
+
+  FIND|<search request>|
+
+    This message is broadcast when the user requests for a file to be found.
+    Use of * wildcards are allowed in the search
+
+
+  FOUND|<filename>|<file size>|
+
+    This message is unicast if a client that received a FIND request has the
+    requested file.
+
+
+  GET|<filename as given in FOUND>|<file size>|<resume position>|
+
+    This message is unicast to the client hosting the file that the user
+    has requested be downloaded.
+
+
+  OK|<filename as given in GET>|<file size>|<resume position>|<port>|
+
+    This message is unicast in response to a GET request after setting up
+    a TCP server port <port> for the other machine to download the file
+    from.
+
+  ERROR|<filename as given in GET>|<error code>|
+
+    Returned if a remote error has occured. Current error codes include:
+    404 - Requested file not found
+    502 - Remote host is too busy to send the file
+
+
+FILE TRANSFER
+
+  After receiving an OK message indicating which port a file may be retrieved
+from, the client initiates a connection to that port and saves all data
+retrieved.  It should know how many bytes long the data is because of the
+<file size> parameter in the OK message.
+
